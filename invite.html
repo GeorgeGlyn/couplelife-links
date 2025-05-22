@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Launching Game...</title>
+  <script>
+    window.onload = function () {
+      const params = new URLSearchParams(window.location.search);
+      const gameId = params.get("gameId");
+      const coupleId = params.get("coupleId");
+
+      if (gameId && coupleId) {
+        const deepLink = `coupleapp://tictactoe?gameId=${gameId}&coupleId=${coupleId}`;
+        window.location.href = deepLink;
+      } else {
+        document.getElementById("fallback").innerHTML = "Missing game ID or couple ID.";
+      }
+    };
+  </script>
+</head>
+<body>
+  <p id="fallback">
+    If you are not redirected, <a id="manualLink" href="#">click here to open the game</a>.
+  </p>
+  <script>
+    const params = new URLSearchParams(window.location.search);
+    const gameId = params.get("gameId");
+    const coupleId = params.get("coupleId");
+
+    if (gameId && coupleId) {
+      const deepLink = `coupleapp://tictactoe?gameId=${gameId}&coupleId=${coupleId}`;
+      document.getElementById("manualLink").setAttribute("href", deepLink);
+    }
+  </script>
+</body>
+</html>
